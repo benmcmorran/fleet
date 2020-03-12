@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.10)
+project(fleet CXX)
+
+macro(assert_defined)
+    foreach(name ${ARGV})
+        if(NOT DEFINED ${name})
+            message(FATAL_ERROR "${name} must be defined.")
+        endif()
+    endforeach()
+endmacro()
+
+assert_defined(PROJECT_TYPE TU_COUNT)
+
+if(PROJECT_TYPE STREQUAL "flat")
+    foreach(UNIQUE_ID RANGE ${TU_COUNT})
+        set(FILENAME source_${UNIQUE_ID}.cpp)
+        configure_file(flat_source.cpp.in ${FILENAME})
+        list(APPEND SOURCES ${FILENAME})
+    endforeach()
+    add_library(benchmark ${SOURCES})
+else()
+    message(FATAL_ERROR "Unknown project type.")
+endif()

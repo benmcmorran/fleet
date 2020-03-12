@@ -1,0 +1,6 @@
+#include <iostream>
+
+void function_@UNIQUE_ID@()
+{
+    std::cout << @UNIQUE_ID@ << std::endl;
+}
