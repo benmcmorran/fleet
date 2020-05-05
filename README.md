@@ -5,6 +5,9 @@ acceleration benchmarking.
 
     $ git clone https://github.com/benmcmorran/fleet.git
     $ cd fleet
+    
+The examples below create a library with 10,000 translation units (TUs) that have
+no dependencies on each other.
 
 To build sequentially run:
 
