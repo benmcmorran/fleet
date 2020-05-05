@@ -4,12 +4,20 @@ acceleration benchmarking.
 # Quick start
 
     $ git clone https://github.com/benmcmorran/fleet.git
-    $ mkdir fleet/out
-    $ cmake -S fleet -B fleet/out -DTU_COUNT=10000 -DPROJECT_TYPE=flat
-    $ time cmake --build fleet/out
+    $ cd fleet
+    
+The examples below create a library with 10,000 translation units (TUs) that have
+no dependencies on each other.
 
-This will create a library with 10,000 translation units (TUs) that have no
-dependencies on each other.
+To build sequentially run:
+
+    $ cmake -DTU_COUNT=10000 -DPROJECT_TYPE=flat
+    $ time cmake --build .
+
+To build with parallelism of 100 using Ninja run:
+
+    $ cmake -G Ninja -DTU_COUNT=10000 -DPROJECT_TYPE=flat -DCMAKE_BUILD_TYPE=Release
+    $ time cmake --build . -- -j 100
 
 # Usage
 
