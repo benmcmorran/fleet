@@ -11,10 +11,10 @@ To build sequentially run:
     $ cmake -DTU_COUNT=10000 -DPROJECT_TYPE=flat
     $ time cmake --build .
 
-To build in parallel run:
+To build with parallelism of 100 using Ninja run:
 
     $ cmake -G Ninja -DTU_COUNT=10000 -DPROJECT_TYPE=flat -DCMAKE_BUILD_TYPE=Release
-    $ time cmake --build .
+    $ time cmake --build . -- -j 100
 
 # Usage
 
